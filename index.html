@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+<head>
+ <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>Twitter Feed Sentiments</title>
+   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.js"></script>
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+   <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.9/c3.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+
+
+
+
+</head>
+<body>
+
+ <style type="text/css">
+    html, body {
+      width:100%;
+      height:100%;    
+      text-align:center;
+      background:#333 url('http://www.ssofc.com/images/full/2015/01/15/information-technology-optical-wallpaper-hot-hd-519683fc4ba9060343.jpg') center repeat;
+         
+    }
+   .hd{
+   background:#fff center repeat;
+   }
+   .hds{
+   color:#000;
+   height:100px;
+     }
+  </style>
+<header class="navbar navbar-static-top bs-docs-nav  hd" id="top" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      
+     
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Twitter Feed Sentiments <i class="glyphicon glyphicon-comment"></i></a>
+        </li>
+        
+      </ul>
+      
+    </nav>
+  </div>
+</header>
+
+
+
+
+
+
+    <div class="container">
+
+   
+
+
+      <div class="row featurette">
+        <div class="col-md-10 col-md-offset-1">
+         
+          
+         
+          
+         <div class="panel panel-primary">
+        <div class="panel-heading">
+       <h3 class="panel-title">Live Twitter Feed &nbsp;<i class="glyphicon glyphicon-comment"></i></h3>
+      
+          </div>
+          <div class="panel-body text-justify">
+          <div class="hds">
+           <div id="book" class="text-center"> 
+           <img height="100" width="200" src="https://24.media.tumblr.com/66b39eeb0ffc5881e7e89f4fae236a81/tumblr_n32sc1LBG01sfkf6ho1_500.gif"><
+
+</div>
+          <p id="navyman"></p>
+         
+          
+          </div>
+           <form id="message-form"  action="#" class="form-inline">
+          
+  <div class="form-group">
+    
+    <div class="col-sm-4">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    
+  </div>
+          
+
+</form>
+         
+     </div>    
+  </div>
+  
+  
+  
+
+         
+  
+         
+  
+        
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+<script>
+
+
+
+
+
+$( "#book" ).hide();
+var socket=io.connect('http://localhost:3000/');
+socket.on('tweet',function(data){
+
+$('#navyman').html('<p class="text-justify"><b>'+ data.user + ': </b>' +  data.text +'</p>');
+
+  var apple=['apple',data.dat[0].satsified];
+  console.log(apple);
+
+
+  var chart = c3.generate({
+	  bindto: '#chart',
+	    data: {
+	        columns: [
+	            ['Apple', 130],
+	            ['LG', 20],
+	            ["Motorola",20],
+	            ["Sony",30],
+	            ["Samsung",20]
+	     
+	        ],
+	        type : 'donut',
+	        onclick: function (d, i) { console.log("onclick", d, i); },
+	        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+	        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+	    },
+	    donut: {
+	        title: "Overall Satisfaction"
+	    }
+	});
+
+// price
+
+  var chart = c3.generate({
+	  bindto: '#chart1',
+	    data: {
+	        columns: [
+	            ['Apple', 90],
+	            ['LG', 20],
+	            ["Motorola",20],
+	            ["Sony",30],
+	            ["Samsung",20]
+	     
+	        ],
+	        type : 'donut',
+	        onclick: function (d, i) { console.log("onclick", d, i); },
+	        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+	        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+	    },
+	    donut: {
+	        title: "Price"
+	    }
+	});
+
+
+// price
+
+  var chart = c3.generate({
+	  bindto: '#chart2',
+	    data: {
+	        columns: [
+	            ['Apple', 50],
+	            ['LG', 20],
+	            ["Motorola",20],
+	            ["Sony",30],
+	            ["Samsung",20]
+	     
+	        ],
+	        type : 'donut',
+	        onclick: function (d, i) { console.log("onclick", d, i); },
+	        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+	        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+	    },
+	    donut: {
+	        title: "Worth the price"
+	    }
+	});
+
+
+// price
+
+  
+  
+  
+
+
+	});
+
+	
+</script>
+
+          
+
+
+
+
+
+
+
+
+
+</div>   </div> 
+      <!-- /END THE FEATURETTES -->
+
+<div class="panel panel-primary">
+        <div class="panel-heading">
+       <h3 class="panel-title">Response Sentiments &nbsp;<i class="glyphicon glyphicon-dashboard"></i></h3>
+   
+          </div>
+          <div class="panel-body text-justify">
+          <div class="row">
+  <div class="col-md-4"> <div id="chart"></div></div>
+  <div class="col-md-4"><div id="chart1"></div></div>
+  <div class="col-md-4"><div id="chart2"></div></div>
+</div>
+         
+          
+          
+          
+          
+          </div> </div> </div>
+
+
+      <!-- FOOTER -->
+
+ 
+      <!-- /.container -->
+    
+         <script>
+     
+     
+     </script> 
+    
+<footer>
+
+
+</div><!-- /.container -->
+
+
+
+</body>
+</html>
